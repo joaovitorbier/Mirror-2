@@ -51,4 +51,14 @@ public class CargoResources {
 		
 	}
 	
+	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> atualizarCargo(@RequestBody Cargo cargo, @PathVariable Integer id){
+		
+		cargo.setId(id);
+		service.atualizarCargo(cargo);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 }

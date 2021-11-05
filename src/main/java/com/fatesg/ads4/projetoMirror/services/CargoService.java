@@ -42,6 +42,13 @@ public class CargoService {
 		
 	}
 	
+	public Cargo atualizarCargo(Cargo cargo) {
+		
+		buscarId(cargo.getId());
+		return repositorio.save(cargo);
+		
+	}
+	
 	
 	//RETORNA TODAS AS PESSOAS NAQUELE CARGO
 	public List<Pessoa> buscarPessoasCargo(Integer id){
