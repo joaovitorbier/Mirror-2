@@ -12,50 +12,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fatesg.ads4.projetoMirror.domain.Departamento;
-import com.fatesg.ads4.projetoMirror.services.DepartamentoService;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
+import com.fatesg.ads4.projetoMirror.services.PessoaService;
 
 @RestController
-@RequestMapping(value="/departamentos")
-public class DepartamentoResources {
+@RequestMapping(value = "/pessoas")
+public class PessoaResources {
 
 	@Autowired
-	private DepartamentoService service;
+	PessoaService service;
 	
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Departamento> buscarPorId(@PathVariable Integer id){
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Pessoa> buscar(@PathVariable Integer id) {
 		
-		Departamento departamento = service.buscarId(id);
+		Pessoa pessoa = service.buscarId(id);
 		
-		return ResponseEntity.ok().body(departamento);
+		return ResponseEntity.ok().body(pessoa);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Departamento>> buscarTudo() {
+	public ResponseEntity<List<Pessoa>> buscarTudo(){
 		
-		List<Departamento> departamentos = service.buscarTudo();
+		List<Pessoa> pessoas = service.buscarTudo();
 		
-		return ResponseEntity.ok().body(departamentos);
+		return ResponseEntity.ok().body(pessoas);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Departamento departamento){
+	public ResponseEntity<Void> inserir(@RequestBody Pessoa pessoa){
 		
-		service.inserir(departamento);
+		service.inserir(pessoa);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(departamento.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 		
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> atualizar(@RequestBody Departamento departamento, @PathVariable Integer id){
+	public ResponseEntity<Void> atualizar(@RequestBody Pessoa pessoa, @PathVariable Integer id){
 		
-		departamento.setId(id);
-		service.atualizar(departamento);
+		pessoa.setId(id);
+		service.atualizar(pessoa);
 		
 		return ResponseEntity.noContent().build();
 		

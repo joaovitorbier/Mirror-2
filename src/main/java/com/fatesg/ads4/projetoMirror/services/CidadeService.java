@@ -34,7 +34,7 @@ public class CidadeService {
 	}
 	
 	//Insere uma cidade
-	public void inserirCidade(Cidade cidade) {
+	public void inserir(Cidade cidade) {
 		
 		repositorio.save(cidade);
 		

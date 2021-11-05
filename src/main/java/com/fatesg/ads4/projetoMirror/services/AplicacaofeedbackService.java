@@ -12,7 +12,7 @@ import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.repositories.AplicacaoFeedbackRepository;
 
 @Service
-public class AplicacaofeedbackServices {
+public class AplicacaofeedbackService {
 
 	@Autowired
 	AplicacaoFeedbackRepository repositorio;
@@ -36,10 +36,9 @@ public class AplicacaofeedbackServices {
 	
 	//Insere uma aplicacao de feedback
 	//DISCUTIR A LÓGICA DISSO, SALVAR UMA APLICAÇÃO OU UMA APLICAÇÃO VINCULADA AO FEEDBACK?
-	public void inserirFeedback(Feedback feedback) {
+	public void inserir(AplicacaoFeedback aplicacao) {
 		
-		AplicacaoFeedback aplicacao = feedback.getAplicacaoFeedback();
-		
+		aplicacao.setId(null);
 		repositorio.save(aplicacao);
 		
 	}

@@ -47,7 +47,7 @@ public class PessoaService {
 	}
 	
 	//INSERIR UMA PESSOA
-	public void inserirPessoa(Pessoa pessoa) {
+	public void inserir(Pessoa pessoa) {
 		
 		repositorio.save(pessoa);
 		

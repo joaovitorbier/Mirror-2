@@ -1,7 +1,5 @@
 package com.fatesg.ads4.projetoMirror.resources;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +27,6 @@ public class EstadoResources {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Estado>> buscarTudo() {
-		
-		List<Estado> estados = service.buscarTudo();
-		
-		return ResponseEntity.ok().body(estados);
-		
-	}
+
 
 }

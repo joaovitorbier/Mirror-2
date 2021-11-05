@@ -12,50 +12,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fatesg.ads4.projetoMirror.domain.Departamento;
-import com.fatesg.ads4.projetoMirror.services.DepartamentoService;
+import com.fatesg.ads4.projetoMirror.domain.Endereco;
+import com.fatesg.ads4.projetoMirror.services.EnderecoService;
 
 @RestController
-@RequestMapping(value="/departamentos")
-public class DepartamentoResources {
+@RequestMapping(value="/enderecos")
+public class EnderecoResources {
 
 	@Autowired
-	private DepartamentoService service;
+	 EnderecoService service;
 	
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Departamento> buscarPorId(@PathVariable Integer id){
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Endereco> buscar(@PathVariable Integer id) {
 		
-		Departamento departamento = service.buscarId(id);
+		Endereco endereco = service.buscarId(id);
 		
-		return ResponseEntity.ok().body(departamento);
+		return ResponseEntity.ok().body(endereco);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Departamento>> buscarTudo() {
+	public ResponseEntity<List<Endereco>> buscarTudo(){
 		
-		List<Departamento> departamentos = service.buscarTudo();
+		List<Endereco> enderecos = service.buscarTudo();
 		
-		return ResponseEntity.ok().body(departamentos);
+		return ResponseEntity.ok().body(enderecos);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Departamento departamento){
+	public ResponseEntity<Void> inserir(@RequestBody Endereco endereco){
 		
-		service.inserir(departamento);
+		service.inserir(endereco);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(departamento.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(endereco.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 		
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> atualizar(@RequestBody Departamento departamento, @PathVariable Integer id){
+	public ResponseEntity<Void> atualizar(@RequestBody Endereco endereco, @PathVariable Integer id){
 		
-		departamento.setId(id);
-		service.atualizar(departamento);
+		endereco.setId(id);
+		service.atualizar(endereco);
 		
 		return ResponseEntity.noContent().build();
 		

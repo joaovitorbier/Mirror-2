@@ -33,7 +33,7 @@ public class EnderecoService {
 	}
 	
 	//INSERIR UM ENDEREÇO
-	public void inserirEndereco(Endereco endereco) {
+	public void inserir(Endereco endereco) {
 		
 		repositorio.save(endereco);
 		

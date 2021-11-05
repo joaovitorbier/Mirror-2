@@ -12,50 +12,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fatesg.ads4.projetoMirror.domain.Departamento;
-import com.fatesg.ads4.projetoMirror.services.DepartamentoService;
+import com.fatesg.ads4.projetoMirror.domain.Feedback;
+import com.fatesg.ads4.projetoMirror.services.FeedbackService;
 
 @RestController
-@RequestMapping(value="/departamentos")
-public class DepartamentoResources {
-
-	@Autowired
-	private DepartamentoService service;
+@RequestMapping(value="/feedbacks")
+public class FeedbackResources {
 	
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Departamento> buscarPorId(@PathVariable Integer id){
+	@Autowired
+	FeedbackService service;
+
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Feedback> buscar(@PathVariable Integer id) {
 		
-		Departamento departamento = service.buscarId(id);
+		Feedback feedback = service.buscarId(id);
 		
-		return ResponseEntity.ok().body(departamento);
+		return ResponseEntity.ok().body(feedback);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Departamento>> buscarTudo() {
+	public ResponseEntity<List<Feedback>> buscarTudo(){
 		
-		List<Departamento> departamentos = service.buscarTudo();
+		List<Feedback> feedbacks = service.buscarTudo();
 		
-		return ResponseEntity.ok().body(departamentos);
+		return ResponseEntity.ok().body(feedbacks);
 		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Departamento departamento){
+	public ResponseEntity<Void> inserir(@RequestBody Feedback feedback){
 		
-		service.inserir(departamento);
+		service.inserir(feedback);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(departamento.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(feedback.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 		
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> atualizar(@RequestBody Departamento departamento, @PathVariable Integer id){
+	public ResponseEntity<Void> atualizar(@RequestBody Feedback feedback, @PathVariable Integer id){
 		
-		departamento.setId(id);
-		service.atualizar(departamento);
+		feedback.setId(id);
+		service.atualizar(feedback);
 		
 		return ResponseEntity.noContent().build();
 		

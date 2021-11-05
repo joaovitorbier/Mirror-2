@@ -55,7 +55,7 @@ public class DepartamentoService {
 	}
 	
 	//Inserir um departamento
-	public void inserirDepartamento(Departamento departamento) {
+	public void inserir(Departamento departamento) {
 		
 		repositorio.save(departamento);
 		

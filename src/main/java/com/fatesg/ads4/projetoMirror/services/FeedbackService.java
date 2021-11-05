@@ -37,7 +37,7 @@ public class FeedbackService{
 	}
 	
 	//Insere um Feedback
-	public void inserirFeedback(Feedback feedback) {
+	public void inserir(Feedback feedback) {
 		
 		repositorio.save(feedback);
 		

@@ -46,7 +46,7 @@ public class UnidadeService {
 	}
 	
 	//INSERIR UMA UNIDADE
-	public void inserirUnidade(Unidade unidade) {
+	public void inserir(Unidade unidade) {
 		
 		repositorio.save(unidade);
 		
