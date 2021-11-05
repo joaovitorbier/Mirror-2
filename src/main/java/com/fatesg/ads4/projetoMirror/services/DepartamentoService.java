@@ -46,6 +46,14 @@ public class DepartamentoService {
 		
 	}
 	
+	//Edita um departamento
+	public Departamento atualizar(Departamento departamento) {
+		
+		buscarId(departamento.getId());
+		return repositorio.save(departamento);
+		
+	}
+	
 	//Inserir um departamento
 	public void inserirDepartamento(Departamento departamento) {
 		

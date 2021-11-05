@@ -53,6 +53,14 @@ public class PessoaService {
 		
 	}
 	
+	//ATUALIZA UMA PESSOA
+	public Pessoa atualizar(Pessoa pessoa) {
+		
+		buscarId(pessoa.getId());
+		return repositorio.save(pessoa);
+		
+	}
+	
 	
 	//DELETA UMA PESSOA
 	public void deletePorId(Integer id) {

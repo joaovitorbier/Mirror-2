@@ -42,7 +42,8 @@ public class CargoService {
 		
 	}
 	
-	public Cargo atualizarCargo(Cargo cargo) {
+	//UPDATE CARGO
+	public Cargo atualizar(Cargo cargo) {
 		
 		buscarId(cargo.getId());
 		return repositorio.save(cargo);

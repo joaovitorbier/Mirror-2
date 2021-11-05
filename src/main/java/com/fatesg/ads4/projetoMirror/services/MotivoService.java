@@ -44,6 +44,14 @@ public class MotivoService {
 				"Objeto não encontrado! ID: " + id + ", Tipo: " + Motivo.class.getName(), null)).getFeedbacks();
 		
 	}
+		
+	//Atualiza um motivo
+	public Motivo atualizar(Motivo motivo) {
+			
+			buscarId(motivo.getId());
+			return repositorio.save(motivo);
+			
+	}
 	
 	//Insere um motivo
 	public void inserirMotivo(Motivo motivo) {

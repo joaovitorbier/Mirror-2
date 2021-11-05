@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.fatesg.ads4.projetoMirror.domain.Cargo;
 import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.repositories.FeedbackRepository;
 import com.fatesg.ads4.projetoMirror.services.exceptions.DataIntegrityException;
@@ -39,6 +40,14 @@ public class FeedbackService{
 	public void inserirFeedback(Feedback feedback) {
 		
 		repositorio.save(feedback);
+		
+	}
+	
+	//Update de um Feedback
+	public Feedback atualizar(Feedback feedback) {
+		
+		buscarId(feedback.getId());
+		return repositorio.save(feedback);
 		
 	}
 	

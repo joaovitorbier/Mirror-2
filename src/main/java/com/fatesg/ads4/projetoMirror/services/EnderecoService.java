@@ -39,6 +39,14 @@ public class EnderecoService {
 		
 	}
 	
+	//ALTERA UM ENDEREÇO
+	public Endereco atualizar(Endereco endereco) {
+		
+		buscarId(endereco.getId());
+		return repositorio.save(endereco);
+		
+	}
+	
 	//DELETA UM ENDEREÇO
 	public void deletePorId(Integer id) {
 		buscarId(id);

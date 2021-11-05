@@ -55,7 +55,7 @@ public class CargoResources {
 	public ResponseEntity<Void> atualizar(@RequestBody Cargo cargo, @PathVariable Integer id){
 		
 		cargo.setId(id);
-		service.atualizarCargo(cargo);
+		service.atualizar(cargo);
 		
 		return ResponseEntity.noContent().build();
 		

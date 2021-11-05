@@ -18,9 +18,6 @@ public class CidadeService {
 	@Autowired
 	private CidadeRepository repositorio;
 	
-	@Autowired
-	private EstadoService estadoService;
-	
 	//Busca uma cidade por ID
 	public Cidade buscarId(Integer id){
 		
@@ -44,7 +41,10 @@ public class CidadeService {
 	}
 	
 	//Atualiza os dados de uma cidade
-	public void updateCidade(Cidade atualizada) {
+	public Cidade atualizar(Cidade cidade) {
+		
+		buscarId(cidade.getId());
+		return repositorio.save(cidade);
 		
 	}
 	

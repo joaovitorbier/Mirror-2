@@ -34,14 +34,22 @@ public class AplicacaofeedbackServices {
 		
 	}
 	
-	//Insere um feedback
-	//DISCUTIR, NÃO PARECE BOM
+	//Insere uma aplicacao de feedback
+	//DISCUTIR A LÓGICA DISSO, SALVAR UMA APLICAÇÃO OU UMA APLICAÇÃO VINCULADA AO FEEDBACK?
 	public void inserirFeedback(Feedback feedback) {
 		
-		repositorio.save(feedback.getAplicacaoFeedback());
+		AplicacaoFeedback aplicacao = feedback.getAplicacaoFeedback();
+		
+		repositorio.save(aplicacao);
 		
 	}
 	
-	
-	
+	//Update
+	public AplicacaoFeedback atualizar(AplicacaoFeedback aplicacao) {
+			
+		buscarId(aplicacao.getId());
+		return repositorio.save(aplicacao);
+			
+	}
+		
 }

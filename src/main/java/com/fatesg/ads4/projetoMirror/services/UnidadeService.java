@@ -52,6 +52,14 @@ public class UnidadeService {
 		
 	}
 	
+	//update uma unidade
+	public Unidade atualizar(Unidade unidade) {
+		
+		buscarId(unidade.getId());
+		return repositorio.save(unidade);
+		
+	}
+	
 	//DELETA UMA UNIDADE
 	public void deletePorId(Integer id) {
 		buscarId(id);
