@@ -41,7 +41,7 @@ public class CargoResources {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserirCargo(@RequestBody Cargo cargo){
+	public ResponseEntity<Void> inserir(@RequestBody Cargo cargo){
 		
 		service.inserirCargo(cargo);
 		
@@ -52,7 +52,7 @@ public class CargoResources {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> atualizarCargo(@RequestBody Cargo cargo, @PathVariable Integer id){
+	public ResponseEntity<Void> atualizar(@RequestBody Cargo cargo, @PathVariable Integer id){
 		
 		cargo.setId(id);
 		service.atualizarCargo(cargo);
@@ -60,5 +60,16 @@ public class CargoResources {
 		return ResponseEntity.noContent().build();
 		
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+		
+		service.deletePorId(id);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	
 	
 }
