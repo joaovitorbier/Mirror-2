@@ -37,7 +37,7 @@ public class CargoService {
 	
 	//INSERIR CARGO
 	public void inserirCargo(Cargo cargo) {
-		
+		cargo.setId(null);
 		repositorio.save(cargo);
 		
 	}
