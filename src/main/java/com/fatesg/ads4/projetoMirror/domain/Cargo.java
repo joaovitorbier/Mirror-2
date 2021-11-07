@@ -25,7 +25,7 @@ public class Cargo implements Serializable {
 	@JoinTable
 	private List<Pessoa> pessoas;
 	
-	//Construtores
+	//CONSTRUTORES
 	public Cargo(String descricao) {
 		super();
 		this.id = null;
