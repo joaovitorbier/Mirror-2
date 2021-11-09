@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fatesg.ads4.projetoMirror.domain.Departamento;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.services.DepartamentoService;
 
 @RestController
@@ -40,6 +41,17 @@ public class DepartamentoResources {
 		
 	}
 	
+	@RequestMapping(value="/{id}/pessoas", method = RequestMethod.GET)
+	public ResponseEntity<List<Pessoa>> buscarPessoas(@PathVariable Integer id){
+		
+		Departamento departamento = service.buscarId(id);
+		
+		List<Pessoa> pessoas = departamento.getPessoas();
+		
+		return ResponseEntity.ok().body(pessoas);
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Departamento departamento){
 		
@@ -51,7 +63,7 @@ public class DepartamentoResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Departamento departamento, @PathVariable Integer id){
 		
 		departamento.setId(id);

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.services.PessoaService;
 
@@ -40,6 +41,17 @@ public class PessoaResources {
 		
 	}
 	
+	@RequestMapping(value="/{id}/feedbacks", method = RequestMethod.GET)
+	public ResponseEntity<List<Feedback>> buscarPessoas(@PathVariable Integer id){
+		
+		Pessoa pessoa = service.buscarId(id);
+		
+		List<Feedback> feedbacks = pessoa.getFeedbacks();
+		
+		return ResponseEntity.ok().body(feedbacks);
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Pessoa pessoa){
 		
@@ -51,7 +63,7 @@ public class PessoaResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Pessoa pessoa, @PathVariable Integer id){
 		
 		pessoa.setId(id);

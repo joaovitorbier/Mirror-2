@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.domain.Motivo;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.services.MotivoService;
 
 @RestController
@@ -40,6 +42,17 @@ public class MotivoResources {
 		
 	}
 	
+	@RequestMapping(value="/{id}/feedbacks", method = RequestMethod.GET)
+	public ResponseEntity<List<Feedback>> buscarFeedbacks(@PathVariable Integer id){
+		
+		Motivo motivo = service.buscarId(id);
+		
+		List<Feedback> feedbacks = motivo.getFeedbacks();
+		
+		return ResponseEntity.ok().body(feedbacks);
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Motivo motivo){
 		
@@ -51,7 +64,7 @@ public class MotivoResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Motivo motivo, @PathVariable Integer id){
 		
 		motivo.setId(id);

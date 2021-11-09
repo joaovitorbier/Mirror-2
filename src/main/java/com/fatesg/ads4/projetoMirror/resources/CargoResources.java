@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fatesg.ads4.projetoMirror.domain.Cargo;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.services.CargoService;
 
 @RestController
@@ -40,6 +41,17 @@ public class CargoResources {
 		
 	}
 	
+	@RequestMapping(value="/{id}/pessoas", method = RequestMethod.GET)
+	public ResponseEntity<List<Pessoa>> buscarPessoas(@PathVariable Integer id){
+		
+		Cargo cargo = service.buscarId(id);
+		
+		List<Pessoa> pessoas = cargo.getPessoas();
+		
+		return ResponseEntity.ok().body(pessoas);
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Cargo cargo){
 		
@@ -51,7 +63,7 @@ public class CargoResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Cargo cargo, @PathVariable Integer id){
 		
 		cargo.setId(id);

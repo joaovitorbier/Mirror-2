@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fatesg.ads4.projetoMirror.domain.Cargo;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.domain.Unidade;
 import com.fatesg.ads4.projetoMirror.services.UnidadeService;
 
@@ -40,6 +42,17 @@ public class UnidadeResources {
 		
 	}
 	
+	@RequestMapping(value="/{id}/pessoas", method = RequestMethod.GET)
+	public ResponseEntity<List<Pessoa>> buscarPessoas(@PathVariable Integer id){
+		
+		Unidade unidade = service.buscarId(id);
+		
+		List<Pessoa> pessoas = unidade.getPessoas();
+		
+		return ResponseEntity.ok().body(pessoas);
+		
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Unidade unidade){
 		
@@ -51,7 +64,7 @@ public class UnidadeResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Unidade unidade, @PathVariable Integer id){
 		
 		unidade.setId(id);

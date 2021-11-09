@@ -51,7 +51,7 @@ public class EnderecoResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Endereco endereco, @PathVariable Integer id){
 		
 		endereco.setId(id);

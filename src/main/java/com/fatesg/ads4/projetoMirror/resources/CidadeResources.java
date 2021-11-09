@@ -52,7 +52,7 @@ public class CidadeResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Cidade cidade, @PathVariable Integer id){
 		
 		cidade.setId(id);

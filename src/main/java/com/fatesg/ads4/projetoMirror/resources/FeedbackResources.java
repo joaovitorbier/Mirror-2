@@ -51,7 +51,7 @@ public class FeedbackResources {
 		
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Feedback feedback, @PathVariable Integer id){
 		
 		feedback.setId(id);
