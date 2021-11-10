@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fatesg.ads4.projetoMirror.domain.Cidade;
 import com.fatesg.ads4.projetoMirror.domain.Estado;
 import com.fatesg.ads4.projetoMirror.domain.Pessoa;
+import com.fatesg.ads4.projetoMirror.enumeradores.Perfil;
 import com.fatesg.ads4.projetoMirror.repositories.CidadeRepository;
 import com.fatesg.ads4.projetoMirror.repositories.EstadoRepository;
 
@@ -150,8 +151,11 @@ public class DBServices {
 				cidade49, cidade50, cidade51, cidade52, cidade53, cidade54));
 		
 		Pessoa pessoa = new Pessoa("Batata");
-
+		pessoa.addPerfil(Perfil.ADMIN);
 		pessoaService.inserir(pessoa);
+		
+		Pessoa pessoa2 = new Pessoa("Todinho");
+		pessoaService.inserir(pessoa2);
 		
 	}
 

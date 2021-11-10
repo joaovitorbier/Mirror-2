@@ -2,10 +2,16 @@ package com.fatesg.ads4.projetoMirror.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,10 +50,13 @@ public class Pessoa implements Serializable {
 	private Date dataExclusao;
 	private Date dataInativacao;
 	
-	//ENUMS CONVERSAR SOBRE MODIFICAÇÃO DELES
-	private Perfil perfil; //USUÁRIO, AVALIADOR E ADMINISTRADOR
+	//ENUMS
 	private Status status; // ATIVO, INATIVO E BLOQUEADO
 	private Tipo tipo; //PESSOA FISICA E PESSOA JURIDICA
+	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet();
 	
 	@ManyToMany
 	@JoinTable
@@ -72,12 +81,16 @@ public class Pessoa implements Serializable {
 	//CONSTRUTORES
 	public Pessoa() {
 		super();
+		addPerfil(Perfil.CLIENTE);
+
 	}
 	
 	//ESTE CONSTRUTOR FOI SÓ PARA TESTAR A CRIPTOGRAFIA, DEIXAR AQUI POR SÓ PRA TESTAR
 	public Pessoa(String senha) {
 		super();
 		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
+
 	}
 
 	public Pessoa(String nome, String email, String senha, String cpfCnpj, String telefone, String anotacao,
@@ -97,7 +110,7 @@ public class Pessoa implements Serializable {
 		this.dataBloqueio = dataBloqueio;
 		this.dataExclusao = dataExclusao;
 		this.dataInativacao = dataInativacao;
-		this.perfil = perfil;
+		addPerfil(Perfil.CLIENTE);
 		this.status = status;
 		this.tipo = tipo;
 		this.endereco = endereco;
@@ -118,7 +131,6 @@ public class Pessoa implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -146,6 +158,16 @@ public class Pessoa implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Set<Perfil> getPerfils(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+		
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+		
 	}
 
 	public String getCpfCnpj() {
@@ -212,14 +234,6 @@ public class Pessoa implements Serializable {
 		this.dataInativacao = dataInativacao;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
@@ -271,12 +285,13 @@ public class Pessoa implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(anotacao, cargo, cpfCnpj, dataBloqueio, dataCadastro, dataExclusao, dataInativacao,
-				dataNascimento, departamento, email, endereco, id, nome, perfil, senha, status, telefone, tipo,
-				unidade);
+				dataNascimento, departamento, email, endereco, feedbacks, id, nome, perfis, senha, status, telefone,
+				tipo, unidade);
 	}
 
 	@Override
@@ -294,22 +309,22 @@ public class Pessoa implements Serializable {
 				&& Objects.equals(dataInativacao, other.dataInativacao)
 				&& Objects.equals(dataNascimento, other.dataNascimento)
 				&& Objects.equals(departamento, other.departamento) && Objects.equals(email, other.email)
-				&& Objects.equals(endereco, other.endereco) && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome) && perfil == other.perfil && Objects.equals(senha, other.senha)
-				&& status == other.status && Objects.equals(telefone, other.telefone) && tipo == other.tipo
+				&& Objects.equals(endereco, other.endereco) && Objects.equals(feedbacks, other.feedbacks)
+				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
+				&& Objects.equals(perfis, other.perfis) && Objects.equals(senha, other.senha) && status == other.status
+				&& Objects.equals(telefone, other.telefone) && tipo == other.tipo
 				&& Objects.equals(unidade, other.unidade);
 	}
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpfCnpj=" + cpfCnpj
-				+ ", telefone=" + telefone + ", anotacao=" + anotacao + ", dataNascimento=" + dataNascimento
+		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", cpfCnpj=" + cpfCnpj + ", telefone="
+				+ telefone + ", anotacao=" + anotacao + ", senha=" + senha + ", dataNascimento=" + dataNascimento
 				+ ", dataCadastro=" + dataCadastro + ", dataBloqueio=" + dataBloqueio + ", dataExclusao=" + dataExclusao
-				+ ", dataInativacao=" + dataInativacao + ", perfil=" + perfil + ", status=" + status + ", tipo=" + tipo
-				+ ", endereco=" + endereco + ", departamento=" + departamento + ", cargo=" + cargo + ", unidade="
-				+ unidade + "]";
+				+ ", dataInativacao=" + dataInativacao + ", status=" + status + ", tipo=" + tipo + ", perfis=" + perfis
+				+ ", feedbacks=" + feedbacks + ", endereco=" + endereco + ", departamento=" + departamento + ", cargo="
+				+ cargo + ", unidade=" + unidade + "]";
 	}
-	
-	
+
 	
 }

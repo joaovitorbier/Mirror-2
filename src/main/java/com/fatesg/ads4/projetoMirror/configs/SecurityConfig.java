@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			
-			"/motivos/**"
+			"/motivos/**",
+			"/pessoas**"
 			
 	};
 	//antMatchers(HttpMethod.GET PUBLIC_MATCHERS_GET).permitAll().
