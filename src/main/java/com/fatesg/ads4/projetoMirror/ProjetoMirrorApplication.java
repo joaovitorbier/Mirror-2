@@ -34,13 +34,13 @@ public class ProjetoMirrorApplication implements CommandLineRunner {
 		
 		
 	}
-	
+	/*
 	@Bean
 	public boolean instanciaBancoDados() throws ParseException {
 		dbService.instanciarBaseDados();
 		return true;
 		}
-
+	*/
 	@Override
 	public void run(String... args) throws Exception {
 	
