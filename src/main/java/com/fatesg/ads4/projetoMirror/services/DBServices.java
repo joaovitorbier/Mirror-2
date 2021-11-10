@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fatesg.ads4.projetoMirror.domain.Cidade;
 import com.fatesg.ads4.projetoMirror.domain.Estado;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.repositories.CidadeRepository;
 import com.fatesg.ads4.projetoMirror.repositories.EstadoRepository;
 
@@ -19,8 +20,13 @@ public class DBServices {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 
+	@Autowired
+	PessoaService pessoaService;
+	
 	public void instanciarBaseDados() {
 
+		
+		
 		Estado estado1 = new Estado("AC", "Acre");
 		Estado estado2 = new Estado("AL", "Alagoas");
 		Estado estado3 = new Estado("AP", "Amapá");
@@ -142,7 +148,11 @@ public class DBServices {
 				cidade29, cidade30, cidade31, cidade32, cidade33, cidade34, cidade35, cidade36, cidade37, cidade38,
 				cidade39, cidade40, cidade41, cidade42, cidade43, cidade44, cidade45, cidade46, cidade47, cidade48,
 				cidade49, cidade50, cidade51, cidade52, cidade53, cidade54));
+		
+		Pessoa pessoa = new Pessoa("Batata");
 
+		pessoaService.inserir(pessoa);
+		
 	}
 
 }

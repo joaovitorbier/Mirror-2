@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fatesg.ads4.projetoMirror.domain.Feedback;
@@ -15,6 +16,9 @@ import com.fatesg.ads4.projetoMirror.services.exceptions.DataIntegrityException;
 
 @Service
 public class PessoaService {
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	@Autowired
 	PessoaRepository repositorio;
@@ -48,6 +52,12 @@ public class PessoaService {
 	
 	//INSERIR UMA PESSOA
 	public void inserir(Pessoa pessoa) {
+		
+		String senha = pessoa.getSenha(); //PEGANDO A SENHA PARA CRIPTOGRAFAR
+		
+		senha = encoder.encode(senha); //CRIPTOGRAFANDO A SENHA
+		
+		pessoa.setSenha(senha); //COLOCANDO A PESSOA COM A SENHA CRIPTAGRAFADA PARA SER SALVA NO BANCO
 		
 		repositorio.save(pessoa);
 		

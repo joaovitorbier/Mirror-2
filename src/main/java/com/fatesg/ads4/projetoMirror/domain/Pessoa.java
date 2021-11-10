@@ -30,10 +30,12 @@ public class Pessoa implements Serializable {
 	
 	private String nome;
 	private String email;
-	private String senha;
 	private String cpfCnpj;
 	private String telefone;
 	private String anotacao;
+	
+	@JsonIgnore
+	private String senha; //SENHA DO LOGIN
 	
 	//DATAS
 	private Date dataNascimento;
@@ -70,6 +72,12 @@ public class Pessoa implements Serializable {
 	//CONSTRUTORES
 	public Pessoa() {
 		super();
+	}
+	
+	//ESTE CONSTRUTOR FOI SÓ PARA TESTAR A CRIPTOGRAFIA, DEIXAR AQUI POR SÓ PRA TESTAR
+	public Pessoa(String senha) {
+		super();
+		this.senha = senha;
 	}
 
 	public Pessoa(String nome, String email, String senha, String cpfCnpj, String telefone, String anotacao,
