@@ -150,11 +150,11 @@ public class DBServices {
 				cidade39, cidade40, cidade41, cidade42, cidade43, cidade44, cidade45, cidade46, cidade47, cidade48,
 				cidade49, cidade50, cidade51, cidade52, cidade53, cidade54));
 		
-		Pessoa pessoa = new Pessoa("Batata");
+		Pessoa pessoa = new Pessoa("admin@admin","admin");
 		pessoa.addPerfil(Perfil.ADMIN);
 		pessoaService.inserir(pessoa);
 		
-		Pessoa pessoa2 = new Pessoa("Todinho");
+		Pessoa pessoa2 = new Pessoa("joaovitorbierbarros@gmail.com","Batata");
 		pessoaService.inserir(pessoa2);
 		
 	}

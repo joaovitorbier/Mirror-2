@@ -90,8 +90,9 @@ public class Pessoa implements Serializable {
 	}
 	
 	//ESTE CONSTRUTOR FOI SÓ PARA TESTAR A CRIPTOGRAFIA, DEIXAR AQUI POR SÓ PRA TESTAR
-	public Pessoa(String senha) {
+	public Pessoa(String email, String senha) {
 		super();
+		this.email = email;
 		this.senha = senha;
 		addPerfil(Perfil.CLIENTE);
 
