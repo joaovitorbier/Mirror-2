@@ -26,7 +26,4 @@ public class EstadoResources {
 		return ResponseEntity.ok().body(objeto);
 		
 	}
-	
-
-
 }

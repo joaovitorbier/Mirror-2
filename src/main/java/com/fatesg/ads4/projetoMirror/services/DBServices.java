@@ -156,6 +156,7 @@ public class DBServices {
 		
 		Pessoa pessoa2 = new Pessoa("joaovitorbierbarros@gmail.com","Batata");
 		pessoaService.inserir(pessoa2);
+
 		
 	}
 
