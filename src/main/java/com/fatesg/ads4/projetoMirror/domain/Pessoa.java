@@ -95,14 +95,16 @@ public class Pessoa implements Serializable {
 		this.email = email;
 		this.senha = senha;
 		addPerfil(Perfil.CLIENTE);
+		Date agora = new Date();
+		this.dataCadastro = agora;
 
 	}
 
 	public Pessoa(String nome, String email, String senha, String cpfCnpj, String telefone, String anotacao,
-			Date dataNascimento, Date dataCadastro, Date dataBloqueio, Date dataExclusao, Date dataInativacao,
-			Perfil perfil, Status status, Tipo tipo, Endereco endereco, Departamento departamento, Cargo cargo,
-			Unidade unidade) {
+			Date dataNascimento,Perfil perfil, Status status, Tipo tipo, Endereco endereco, Departamento departamento,
+			Cargo cargo,Unidade unidade) {
 		super();
+		
 		this.id = null;
 		this.nome = nome;
 		this.email = email;
@@ -111,17 +113,22 @@ public class Pessoa implements Serializable {
 		this.telefone = telefone;
 		this.anotacao = anotacao;
 		this.dataNascimento = dataNascimento;
-		this.dataCadastro = dataCadastro;
-		this.dataBloqueio = dataBloqueio;
-		this.dataExclusao = dataExclusao;
-		this.dataInativacao = dataInativacao;
-		addPerfil(Perfil.CLIENTE);
+		
+		this.dataBloqueio = null;
+		this.dataExclusao = null;
+		this.dataInativacao = null;
+		
 		this.status = status;
 		this.tipo = tipo;
 		this.endereco = endereco;
 		this.departamento = departamento;
 		this.cargo = cargo;
 		this.unidade = unidade;
+		
+		//Set básico do sistema, todo usuário é automaticamente setado como cliente e a hora de cadastro é a hora do sistema
+		Date agora = new Date();
+		this.dataCadastro = agora;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	//GETTERS E SETTERS

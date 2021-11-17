@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatesg.ads4.projetoMirror.domain.AplicacaoFeedback;
-import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.repositories.AplicacaoFeedbackRepository;
 
 @Service
@@ -34,8 +33,8 @@ public class AplicacaofeedbackService {
 		
 	}
 	
+	//REPENSAR NISSO AQUI SOBRE COMO RELACIONAR ISSO
 	//Insere uma aplicacao de feedback
-	//DISCUTIR A LÓGICA DISSO, SALVAR UMA APLICAÇÃO OU UMA APLICAÇÃO VINCULADA AO FEEDBACK?
 	public void inserir(AplicacaoFeedback aplicacao) {
 		
 		aplicacao.setId(null);

@@ -3,8 +3,9 @@ package com.fatesg.ads4.projetoMirror.enumeradores;
 public enum Perfil {
 
 	ADMIN(1, "ROLE_ADMIN"),
-	CLIENTE(2, "ROLE_CLIENTE"),
-	AVALIADOR(3, "ROLE_AVALIADOR");
+	AVALIADOR(2, "ROLE_AVALIADOR"),
+	CLIENTE(3, "ROLE_CLIENTE");
+	
 	
 	int cod;
 	private String descricao;

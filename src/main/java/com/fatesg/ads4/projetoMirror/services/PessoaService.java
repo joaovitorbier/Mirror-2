@@ -51,7 +51,7 @@ public class PessoaService {
 		
 		UserSS user = UserService.authenticated();
 		
-		if(user == null || !user.hasRole(Perfil.ADMIN)) {
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !user.hasRole(Perfil.AVALIADOR)) {
 			
 			throw new AuthorizationException("Acesso negado");
 			
