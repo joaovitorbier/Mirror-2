@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco implements Serializable{
@@ -19,27 +17,29 @@ public class Endereco implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private int numero;
 	private String logradouro;
-	private String complemento;
 	private String cep;
 	private String bairro;
+	private String cidade;
+	private String estado;
 	
-	@ManyToOne
-	@JoinColumn(name = "cidade_id")
-	private Cidade cidade;
 
 	//CONSTRUTORES
-	public Endereco(int numero, String logradouro, String complemento, String cep, String bairro,
-			Cidade cidade) {
+	public Endereco(String logradouro, String cep, String bairro,String cidade, String estado) {
 		super();
 		this.id = null;
-		this.numero = numero;
 		this.logradouro = logradouro;
-		this.complemento = complemento;
 		this.cep = cep;
 		this.bairro = bairro;
 		this.cidade = cidade;
+		this.estado = estado;
+		
+	}
+	
+	public Endereco(String cep) {
+		super();
+		this.id = null;
+		this.cep = cep;
 	}
 
 	public Endereco() {
@@ -50,13 +50,23 @@ public class Endereco implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-
-	public Cidade getCidade() {
+	
+	public String getCidade() {
 		return cidade;
 	}
-	public void setCidade(Cidade cidade) {
+
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -66,12 +76,7 @@ public class Endereco implements Serializable{
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+
 	public String getCep() {
 		return cep;
 	}
@@ -84,19 +89,16 @@ public class Endereco implements Serializable{
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
-	public int getNumero() {
-		return numero;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(bairro, cep, cidade, complemento, id, logradouro, numero);
+		return Objects.hash(bairro, cep, cidade, estado, id, logradouro);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -107,14 +109,14 @@ public class Endereco implements Serializable{
 			return false;
 		Endereco other = (Endereco) obj;
 		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
-				&& Objects.equals(cidade, other.cidade) && Objects.equals(complemento, other.complemento)
-				&& Objects.equals(id, other.id) && Objects.equals(logradouro, other.logradouro)
-				&& numero == other.numero;
+				&& Objects.equals(cidade, other.cidade) && Objects.equals(estado, other.estado)
+				&& Objects.equals(id, other.id) && Objects.equals(logradouro, other.logradouro);
 	}
+
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", complemento=" + complemento + ", cep=" + cep
-				+ ", bairro=" + bairro + ", numero=" + numero + ", cidade=" + cidade + "]";
+		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", cep=" + cep + ", bairro=" + bairro + ", cidade="
+				+ cidade + ", estado=" + estado + "]";
 	}
 	
 }

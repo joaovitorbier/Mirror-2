@@ -14,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.domain.Motivo;
-import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.services.MotivoService;
 
 @RestController

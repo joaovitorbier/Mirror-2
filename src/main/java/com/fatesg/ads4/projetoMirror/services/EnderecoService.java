@@ -18,6 +18,7 @@ public class EnderecoService {
 	@Autowired
 	private EnderecoRepository repositorio;
 	
+	
 	//BUSCA O ENDERECO POR ID
 	public Endereco buscarId(Integer id) {
 		

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fatesg.ads4.projetoMirror.domain.Cargo;
 import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.domain.Unidade;
 import com.fatesg.ads4.projetoMirror.services.UnidadeService;
