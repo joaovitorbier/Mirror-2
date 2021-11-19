@@ -7,8 +7,10 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.fatesg.ads4.projetoMirror.domain.Endereco;
+import com.fatesg.ads4.projetoMirror.domain.postmon.Adress;
 import com.fatesg.ads4.projetoMirror.repositories.EnderecoRepository;
 import com.fatesg.ads4.projetoMirror.services.exceptions.DataIntegrityException;
 
@@ -35,6 +37,17 @@ public class EnderecoService {
 	
 	//INSERIR UM ENDEREÇO
 	public void inserir(Endereco endereco) {
+		
+		String fullUrl = "https://api.postmon.com.br/v1/cep/" + endereco.getCep();
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		Adress objetoRetornadoPelaApi = restTemplate.getForObject(fullUrl, Adress.class);
+		
+		endereco.setCidade(objetoRetornadoPelaApi.getCidade());
+		endereco.setEstado(objetoRetornadoPelaApi.getEstado());
+		endereco.setLogradouro(objetoRetornadoPelaApi.getLogradouro());
+		endereco.setBairro(objetoRetornadoPelaApi.getBairro());
 		
 		repositorio.save(endereco);
 		

@@ -38,6 +38,7 @@ public class AplicacaoFeedback implements Serializable{
 		super();
 	}
 	
+	//CONSTRUTOR QUE USA O FEEDBACK INTEIRO
 	public AplicacaoFeedback(Feedback feedback, String textoFeedback, String textoReplica,
 			Date dataLimiteReplica, Date dataAplicacao) {
 		super();
@@ -46,7 +47,19 @@ public class AplicacaoFeedback implements Serializable{
 		this.textoFeedback = textoFeedback;
 		this.textoReplica = textoReplica;
 		this.dataLimiteReplica = dataLimiteReplica;
-		this.dataAplicacao = dataAplicacao;
+		Date agora = new Date();
+		this.dataAplicacao = agora;
+	}
+	
+	//CONSTRUTOR QUE USA APENAS O ID DO FEEDBACK
+	public AplicacaoFeedback(Integer feedbackId, String textoFeedback, Date dataLimiteReplica, Date dataAplicacao) {
+		super();
+		this.id = null;
+		this.feedback.setId(feedbackId);
+		this.textoFeedback = textoFeedback;
+		this.dataLimiteReplica = dataLimiteReplica;
+		Date agora = new Date();
+		this.dataAplicacao = agora;
 	}
 	
 	//GETTERS E SETTERS

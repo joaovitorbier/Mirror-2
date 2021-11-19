@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fatesg.ads4.projetoMirror.domain.Endereco;
-import com.fatesg.ads4.projetoMirror.domain.postmon.Adress;
 import com.fatesg.ads4.projetoMirror.services.EnderecoService;
 
 @RestController
@@ -44,17 +42,6 @@ public class EnderecoResources {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Endereco endereco){
-		
-		String fullUrl = "https://api.postmon.com.br/v1/cep/" + endereco.getCep();
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		Adress objetoRetornadoPelaApi = restTemplate.getForObject(fullUrl, Adress.class);
-		
-		endereco.setCidade(objetoRetornadoPelaApi.getCidade());
-		endereco.setEstado(objetoRetornadoPelaApi.getEstado());
-		endereco.setLogradouro(objetoRetornadoPelaApi.getLogradouro());
-		endereco.setBairro(objetoRetornadoPelaApi.getBairro());
 		
 		service.inserir(endereco);
 		

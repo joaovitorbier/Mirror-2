@@ -44,7 +44,6 @@ public class Pessoa implements Serializable {
 	private String telefone;
 	private String anotacao;
 	
-	@JsonIgnore
 	private String senha; //SENHA DO LOGIN
 	
 	//DATAS
@@ -97,12 +96,11 @@ public class Pessoa implements Serializable {
 		addPerfil(Perfil.CLIENTE);
 		Date agora = new Date();
 		this.dataCadastro = agora;
+		setStatus(Status.ATIVO);
 
 	}
 
-	public Pessoa(String nome, String email, String senha, String cpfCnpj, String telefone, String anotacao,
-			Date dataNascimento,Perfil perfil, Status status, Tipo tipo, Endereco endereco, Departamento departamento,
-			Cargo cargo,Unidade unidade) {
+	public Pessoa(String nome, String email, String senha, String cpfCnpj, String telefone, String anotacao,Date dataNascimento,Endereco endereco, Departamento departamento,Cargo cargo,Unidade unidade) {
 		super();
 		
 		this.id = null;
@@ -118,8 +116,6 @@ public class Pessoa implements Serializable {
 		this.dataExclusao = null;
 		this.dataInativacao = null;
 		
-		this.status = status;
-		this.tipo = tipo;
 		this.endereco = endereco;
 		this.departamento = departamento;
 		this.cargo = cargo;
@@ -129,6 +125,13 @@ public class Pessoa implements Serializable {
 		Date agora = new Date();
 		this.dataCadastro = agora;
 		addPerfil(Perfil.CLIENTE);
+		setStatus(Status.ATIVO);
+		
+		//DECIDE O TIPO PELO NÚMERO DE CARACTERES EM cpfCpnj
+		if(cpfCnpj.length() == 11) {
+			setTipo(tipo.FISICA);
+		}else setTipo(tipo.JURIDICA);
+		
 	}
 
 	//GETTERS E SETTERS
@@ -297,6 +300,8 @@ public class Pessoa implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 	
 
 	@Override

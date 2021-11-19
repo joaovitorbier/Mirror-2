@@ -53,19 +53,18 @@ public class Feedback implements Serializable{
 		super();
 	}
 	
-	public Feedback(Pessoa avaliador, Pessoa avaliado, Date dataCadastro,
-			Date dataAgendamento, Motivo motivo, AplicacaoFeedback aplicacaoFeedback, String anotacao,
-			FeedBackStatus status) {
+	public Feedback(Pessoa avaliador, Pessoa avaliado,Date dataAgendamento, Motivo motivo,String anotacao) {
 		super();
 		this.id = null;
 		this.avaliador = avaliador;
 		this.avaliado = avaliado;
-		this.dataCadastro = dataCadastro;
 		this.dataAgendamento = dataAgendamento;
 		this.motivo = motivo;
-		this.aplicacaoFeedback = aplicacaoFeedback;
 		this.anotacao = anotacao;
-		this.status = status;
+		
+		setStatus(FeedBackStatus.PENDENTE);
+		Date agora = new Date();
+		this.dataCadastro = agora;
 	}
 
 

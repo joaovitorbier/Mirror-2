@@ -3,7 +3,7 @@ package com.fatesg.ads4.projetoMirror.enumeradores;
 public enum FeedBackStatus {
 
 
-	APLICADO("APLICADO"),ATRASADO("ATRASADO"),;
+	APLICADO("APLICADO"),ATRASADO("ATRASADO"),PENDENTE("PENDENTE");
 	
 	private String descricao;
 	
