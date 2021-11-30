@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.fatesg.ads4.projetoMirror.domain.Feedback;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.repositories.FeedbackRepository;
 import com.fatesg.ads4.projetoMirror.services.exceptions.DataIntegrityException;
 import com.fatesg.ads4.projetoMirror.services.exceptions.ObjectNotFoundException;
@@ -60,6 +61,18 @@ public class FeedbackService{
 			throw new DataIntegrityException("Não é possivel excluir um Feedback vinculado a usuários!");
 		}
 
+	}
+	
+	public List<Feedback> buscarPorAvaliador(Pessoa pessoa) {
+		
+		return repositorio.findByAvaliador(pessoa);
+		
+	}
+	
+	public List<Feedback> buscarPorAvaliado(Pessoa pessoa){
+		
+		return repositorio.findByAvaliado(pessoa);
+		
 	}
 	
 }

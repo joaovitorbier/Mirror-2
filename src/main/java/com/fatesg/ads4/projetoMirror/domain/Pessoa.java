@@ -69,18 +69,12 @@ public class Pessoa implements Serializable {
 	@JoinColumn
 	private Endereco endereco; //USAR O VIA CEP ESSA SEMANA
 	
-	@ManyToOne
-	@JoinColumn
 	private Departamento departamento;
 	
-	@ManyToOne
-	@JoinColumn
 	private Cargo cargo;
-	
-	@ManyToOne
-	@JoinColumn
-	private Unidade unidade;
 
+	private Unidade unidade;
+	
 	//CONSTRUTORES
 	public Pessoa() {
 		super();

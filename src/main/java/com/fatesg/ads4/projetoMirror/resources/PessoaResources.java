@@ -8,16 +8,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.domain.Pessoa;
+import com.fatesg.ads4.projetoMirror.services.EnderecoService;
 import com.fatesg.ads4.projetoMirror.services.PessoaService;
 
 @RestController
@@ -26,6 +25,9 @@ public class PessoaResources {
 
 	@Autowired
 	PessoaService service;
+	
+	@Autowired
+	EnderecoService enderecoService;
 	
 	@GetMapping(path = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Pessoa> buscar(@PathVariable Integer id) {
@@ -58,6 +60,8 @@ public class PessoaResources {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Pessoa pessoa){
+		
+		enderecoService.inserir(pessoa.getEndereco());
 		
 		service.inserir(pessoa);
 		

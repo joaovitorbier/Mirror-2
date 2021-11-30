@@ -39,7 +39,7 @@ public class AplicacaoFeedback implements Serializable{
 	}
 	
 	//CONSTRUTOR QUE USA O FEEDBACK INTEIRO
-	public AplicacaoFeedback(Feedback feedback, String textoFeedback, String textoReplica,
+	public AplicacaoFeedback(Feedback feedback, String textoFeedback,
 			Date dataLimiteReplica, Date dataAplicacao) {
 		super();
 		this.id = null;

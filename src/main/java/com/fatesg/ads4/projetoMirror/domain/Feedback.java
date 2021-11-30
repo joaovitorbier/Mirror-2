@@ -14,9 +14,9 @@ import javax.persistence.OneToOne;
 
 import com.fatesg.ads4.projetoMirror.enumeradores.FeedBackStatus;
 
+
 @Entity
 public class Feedback implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -66,9 +66,28 @@ public class Feedback implements Serializable{
 		Date agora = new Date();
 		this.dataCadastro = agora;
 	}
-
-
-
+	
+	/*
+	public Feedback(Integer idAvaliador, Integer idAvaliado,Date dataAgendamento, Integer idMotivo,String anotacao) {
+		super();
+		this.id = null;
+		
+		//BUSCANDO AS PESSOAS
+		this.avaliador = pessoaService.buscarId(idAvaliador);
+		this.avaliado =  pessoaService.buscarId(idAvaliado);
+		
+		this.dataAgendamento = dataAgendamento;
+		
+		this.motivo = motivoService.buscarId(idMotivo); 
+		
+		this.anotacao = anotacao;
+		
+		setStatus(FeedBackStatus.PENDENTE);
+		Date agora = new Date();
+		this.dataCadastro = agora;
+	}
+	*/
+	
 	//GETTERS E SETTERS
 	public Integer getId() {
 		return id;

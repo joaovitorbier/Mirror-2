@@ -35,6 +35,9 @@ public class DBServices {
 	@Autowired
 	EnderecoService enderecoService;
 	
+	@Autowired
+	FeedbackService feedbackService;
+	
 	public void instanciarBaseDados() {
 		
 		//INSTANCIANDO USUÁRIOS BÁSICOS
@@ -99,6 +102,10 @@ public class DBServices {
 			
 		//CRIANDO UM FEEDBACK PARA SER APLICADO
 			Feedback feedback = new Feedback(pessoa,pessoa2, date, motivo, "Fazer urgente");
+			feedbackService.inserir(feedback);
+			
+			Feedback feedback2 = new Feedback(pessoa2,pessoa, date, motivo, "Fazer urgente");
+			feedbackService.inserir(feedback);
 			
 	}
 
