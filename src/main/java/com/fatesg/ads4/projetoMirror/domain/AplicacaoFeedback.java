@@ -11,11 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+/*
+ *  ESSA CLASSE DEU UM BUG INÊSPERADO PERTO
+ *  DA DATA LIMITE, PARA ENTÃO EVITAR PROBLEMAS
+ *  MAIORES E PERCEBENDO QUE ELA PODERIA SER SÓ
+ *  ALGUMAS COLUNAS A MAIS NA CLASSE FEEDBACK
+ *  OS SEGUINTES ATRIBUTOS FORAM MOVIDOS DIRETO
+ *  PARA A CLASSE FEEDBACK:
+ *  String textoFeedback
+ *  String textoReplica
+ *  Date dataLimiteReplica;
+ *  Date dataAplicacao;
+ *  
+ *  O PROBLEMA FOI RESOLVIDO DEPOIS DESSA MUDANÇA
+ *  MAS DEIXEI A CLASSE AQUI PARA ALGUMA FUTURA
+ *  REFATORAÇÃO QUE SEJA CRIADO UMA SOLUÇÃO MELHOR
+ *  PARA O PROBLEMA.
+ */
+
 @Entity
 public class AplicacaoFeedback implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	
 	@Id
 	@GeneratedValue(strategy  = GenerationType.IDENTITY)

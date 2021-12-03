@@ -32,7 +32,6 @@ public class Feedback implements Serializable{
 	@JoinColumn
 	private Pessoa avaliado;
 	
-	//Textos
 	private String textoFeedback;
 	private String textoReplica;
 	
@@ -99,10 +98,46 @@ public class Feedback implements Serializable{
 	*/
 	
 	//GETTERS E SETTERS
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
 	
+	public String getTextoFeedback() {
+		return textoFeedback;
+	}
+
+	public void setTextoFeedback(String textoFeedback) {
+		this.textoFeedback = textoFeedback;
+	}
+
+	public String getTextoReplica() {
+		return textoReplica;
+	}
+
+	public void setTextoReplica(String textoReplica) {
+		this.textoReplica = textoReplica;
+	}
+
+	public Date getDataLimiteReplica() {
+		return dataLimiteReplica;
+	}
+
+	public void setDataLimiteReplica(Date dataLimiteReplica) {
+		this.dataLimiteReplica = dataLimiteReplica;
+	}
+
+	public Date getDataAplicacao() {
+		return dataAplicacao;
+	}
+
+	public void setDataAplicacao(Date dataAplicacao) {
+		this.dataAplicacao = dataAplicacao;
+	}
+
+	//DEVIDA A REMOÇÃO DA AplicacaoFeedback
 	/*
 	public AplicacaoFeedback getAplicacaoFeedback() {
 		return aplicacaoFeedback;
@@ -163,13 +198,13 @@ public class Feedback implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(anotacao, avaliado, avaliador, dataAgendamento, dataCadastro, id, motivo, status);
+		return Objects.hash(anotacao, avaliado, avaliador, dataAgendamento, dataAplicacao, dataCadastro,
+				dataLimiteReplica, id, motivo, status, textoFeedback, textoReplica);
 	}
-	
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -181,15 +216,20 @@ public class Feedback implements Serializable{
 		Feedback other = (Feedback) obj;
 		return Objects.equals(anotacao, other.anotacao) && Objects.equals(avaliado, other.avaliado)
 				&& Objects.equals(avaliador, other.avaliador) && Objects.equals(dataAgendamento, other.dataAgendamento)
-				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(id, other.id)
-				&& Objects.equals(motivo, other.motivo) && status == other.status;
+				&& Objects.equals(dataAplicacao, other.dataAplicacao)
+				&& Objects.equals(dataCadastro, other.dataCadastro)
+				&& Objects.equals(dataLimiteReplica, other.dataLimiteReplica) && Objects.equals(id, other.id)
+				&& Objects.equals(motivo, other.motivo) && status == other.status
+				&& Objects.equals(textoFeedback, other.textoFeedback)
+				&& Objects.equals(textoReplica, other.textoReplica);
 	}
+
 	@Override
 	public String toString() {
-		return "Feedback [id=" + id + ", avaliador=" + avaliador + ", avaliado=" + avaliado + ", dataCadastro="
-				+ dataCadastro + ", dataAgendamento=" + dataAgendamento + ", motivo=" + motivo + ", anotacao="
-				+ anotacao + ", status=" + status + "]";
+		return "Feedback [id=" + id + ", avaliador=" + avaliador + ", avaliado=" + avaliado + ", textoFeedback="
+				+ textoFeedback + ", textoReplica=" + textoReplica + ", dataLimiteReplica=" + dataLimiteReplica
+				+ ", dataAplicacao=" + dataAplicacao + ", dataCadastro=" + dataCadastro + ", dataAgendamento="
+				+ dataAgendamento + ", motivo=" + motivo + ", anotacao=" + anotacao + ", status=" + status + "]";
 	}
-	
 	
 }
