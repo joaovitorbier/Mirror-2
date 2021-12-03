@@ -32,6 +32,13 @@ public class Feedback implements Serializable{
 	@JoinColumn
 	private Pessoa avaliado;
 	
+	//Textos
+	private String textoFeedback;
+	private String textoReplica;
+	
+	//Datas
+	private Date dataLimiteReplica;
+	private Date dataAplicacao;
 	
 	//Datas
 	private Date dataCadastro;
@@ -41,9 +48,12 @@ public class Feedback implements Serializable{
 	@JoinColumn
 	private Motivo motivo;
 	
+	//FALHOU NA APLICAÇÃO, CORRIGIMOS DE OUTRA FORMA
+	/*
 	@OneToOne
 	@JoinColumn
 	private AplicacaoFeedback aplicacaoFeedback;
+	*/
 	
 	private String anotacao;
 	private FeedBackStatus status; //OS SEGUINTES STATUS: APLICADO, ATRASADO, 
@@ -93,7 +103,7 @@ public class Feedback implements Serializable{
 		return id;
 	}
 	
-	
+	/*
 	public AplicacaoFeedback getAplicacaoFeedback() {
 		return aplicacaoFeedback;
 	}
@@ -101,7 +111,7 @@ public class Feedback implements Serializable{
 	public void setAplicacaoFeedback(AplicacaoFeedback aplicacaoFeedback) {
 		this.aplicacaoFeedback = aplicacaoFeedback;
 	}
-
+	*/
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,8 +19,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fatesg.ads4.projetoMirror.DTO.CredenciaisDTO;
+import com.fatesg.ads4.projetoMirror.domain.Pessoa;
+import com.fatesg.ads4.projetoMirror.repositories.PessoaRepository;
+
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
+	
+	@Autowired
+	PessoaRepository service;
 	
 	private AuthenticationManager authenticationManager;
 	
@@ -52,7 +59,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	public void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException{
 		
-
+		//ORIGINAL QUE FUNCIONA
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
         res.addHeader("Authorization", "Bearer " + token);
@@ -60,6 +67,43 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String responseToClient = "{\"token\": \"" + token + "\" }";
         res.getWriter().write(responseToClient);
         res.getWriter().flush();
+
+		
+		//VERSÃO DO JOÃO
+		/*
+		String username = ((UserSS) auth.getPrincipal()).getUsername();
+		
+		Pessoa pessoa = service.findByEmail(username);
+		
+		Object[] myArr = pessoa.getPerfils().toArray();
+		String value1 = myArr[0].toString();
+		//String value2 = myArr[1].toString();
+		
+        String token = jwtUtil.generateToken(username);
+        res.addHeader("Authorization", "Bearer " + token);
+        res.addHeader("access-control-expose-headers", "Authorization");
+        String responseToClient = "{\"token\": \"" + token + "\" ,  \"email\": \"" + username + "\"}";
+        String userReturn = "{\"token\": " + token + ", "
+                + "\"email\": \"" + username + "\", "
+                + "\"id\": \"" + pessoa.getId() +"\", "
+                + "\"perfil\": \""+value1+"\"}";
+        res.getWriter().write(userReturn);
+        res.getWriter().flush();
+		*/
+		
+		//MINHA TENTATIVA DNV
+		/*
+		String username = ((UserSS) auth.getPrincipal()).getUsername();
+		
+		Pessoa pessoa = service.findByEmail(username);
+		String userID = "" + pessoa.getId();
+		
+        String token = jwtUtil.generateToken(username);
+        res.addHeader("user", userID);
+        res.addHeader("Authorization", "Bearer " + token);
+        res.addHeader("access-control-expose-headers", "Authorization");
+        res.addHeader("access-control-expose-headers", "user");
+		*/
 	}
 	
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {

@@ -54,9 +54,10 @@ public class MotivoService {
 	}
 	
 	//Insere um motivo
-	public void inserir(Motivo motivo) {
+	public boolean inserir(Motivo motivo) {
 		
 		repositorio.save(motivo);
+		return true;
 		
 	}
 	

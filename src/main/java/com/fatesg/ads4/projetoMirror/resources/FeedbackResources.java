@@ -85,6 +85,32 @@ public class FeedbackResources {
 		
 		List<Feedback> feedbacks = service.buscarPorAvaliado(pessoa);
 		
+		for(int i = 0; i < feedbacks.size(); i++) {
+			
+			if(feedbacks.get(i).getStatus() != FeedBackStatus.APLICADO) {
+				
+				feedbacks.remove(i);
+				
+			}
+			
+		}
+		
+		/*
+		List<Feedback> feedbacksFinalizados = new ArrayList<Feedback>();
+		
+		for(int i = 0; i < feedbacks.size(); i++) {
+			
+			if(feedbacks.get(i).getStatus() == FeedBackStatus.APLICADO) {
+				
+				feedbacksFinalizados.add(feedbacks.get(i));
+				
+			}
+			
+		}
+		
+		return ResponseEntity.ok().body(feedbacksFinalizados);
+		*/
+		
 		return ResponseEntity.ok().body(feedbacks);
 		
 	}

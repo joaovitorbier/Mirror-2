@@ -12,6 +12,7 @@ import com.fatesg.ads4.projetoMirror.domain.Feedback;
 import com.fatesg.ads4.projetoMirror.domain.Motivo;
 import com.fatesg.ads4.projetoMirror.domain.Pessoa;
 import com.fatesg.ads4.projetoMirror.domain.Unidade;
+import com.fatesg.ads4.projetoMirror.enumeradores.FeedBackStatus;
 import com.fatesg.ads4.projetoMirror.enumeradores.Perfil;
 
 @Service
@@ -102,10 +103,14 @@ public class DBServices {
 			
 		//CRIANDO UM FEEDBACK PARA SER APLICADO
 			Feedback feedback = new Feedback(pessoa,pessoa2, date, motivo, "Fazer urgente");
+			feedback.setStatus(FeedBackStatus.APLICADO);
 			feedbackService.inserir(feedback);
 			
 			Feedback feedback2 = new Feedback(pessoa2,pessoa, date, motivo, "Fazer urgente");
-			feedbackService.inserir(feedback);
+			feedback2.setStatus(FeedBackStatus.APLICADO);
+			feedbackService.inserir(feedback2);
+			
+			
 			
 	}
 
