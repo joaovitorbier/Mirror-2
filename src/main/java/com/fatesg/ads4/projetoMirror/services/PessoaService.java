@@ -70,6 +70,17 @@ public class PessoaService {
 		
 	}
 	
+	public Pessoa buscarPorEmail(String email) {
+		
+		//SE A PESSOA NÃO FOR ADMIN SÓ PERMITE QUE CLIENTE BUSQUE ELE MESMO.
+	
+		return repositorio.findByEmail(email);
+		
+		//return pessoa.orElseThrow(() -> new ObjectNotFoundException(
+		//		"Objeto não encontrado! ID: " + id + ", Tipo: " + Pessoa.class.getName(), null));
+		
+	}
+	
 	//INSERIR UMA PESSOA
 	public void inserir(Pessoa pessoa) {
 		

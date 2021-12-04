@@ -110,8 +110,6 @@ public class DBServices {
 			feedback2.setStatus(FeedBackStatus.APLICADO);
 			feedbackService.inserir(feedback2);
 			
-			
-			
 	}
 
 }

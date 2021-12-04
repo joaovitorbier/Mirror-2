@@ -71,6 +71,15 @@ public class PessoaResources {
 		
 	}
 	
+	@GetMapping(path = "/getByEmail/{email}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Pessoa> buscarByEmail(@PathVariable String email) {
+		
+		Pessoa pessoa = service.buscarPorEmail(email);
+		
+		return ResponseEntity.ok().body(pessoa);
+		
+	}
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar(@RequestBody Pessoa pessoa, @PathVariable Integer id){
 		

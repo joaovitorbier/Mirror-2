@@ -69,7 +69,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.getWriter().flush();
 
 		
-		//VERSÃO DO JOÃO
+		//VERSÃO DO BIER
 		/*
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 		
@@ -91,7 +91,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.getWriter().flush();
 		*/
 		
-		//MINHA TENTATIVA DNV
+		//VERSÃO DO JOÃO
 		/*
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
 		

@@ -26,7 +26,7 @@ public class ProjetoMirrorApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoMirrorApplication.class, args);
-		
+
 	}
 	/*
 	@Bean
