@@ -58,7 +58,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	@Override
 	public void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException{
-		
+		/*
 		//ORIGINAL QUE FUNCIONA
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
@@ -67,7 +67,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String responseToClient = "{\"token\": \"" + token + "\" }";
         res.getWriter().write(responseToClient);
         res.getWriter().flush();
-
+*/
+        //ORIGINAL QUE FUNCIONA 2
+		String username = ((UserSS) auth.getPrincipal()).getUsername();
+        String token = jwtUtil.generateToken(username);
+        res.addHeader("Authorization", "Bearer " + token);
+        res.addHeader("access-control-expose-headers", "Authorization");
+        String responseToClient = "{\"token\": \"" + token + "\" ,  \"email\": \"" + username + "\"}";
+        res.getWriter().write(responseToClient);
+        res.getWriter().flush();
+        
 		
 		//VERSÃO DO BIER
 		/*

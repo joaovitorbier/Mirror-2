@@ -96,18 +96,20 @@ public class DBServices {
 			Date date = new Date(); //SÓ UMA DATA DE TESTE
 			
 			Pessoa pessoa = new Pessoa("Cleberson","clebin@hotmail.com","123456","70164574190","3271-7804","Esse rapaz é bem dedicado",date,endereco,departamento,cargo,unidade);
+			pessoa.addPerfil(Perfil.ADMIN);
 			pessoaService.inserir(pessoa);
 			
 			Pessoa pessoa2 = new Pessoa("Fátima","fafa@gmail.com","123456","123456789123","98310-2020","",date,endereco2,departamento2,cargo2,unidade2);
+			pessoa2.addPerfil(Perfil.CLIENTE);
 			pessoaService.inserir(pessoa2);
 			
 		//CRIANDO UM FEEDBACK PARA SER APLICADO
 			Feedback feedback = new Feedback(pessoa,pessoa2, date, motivo, "Fazer urgente");
-			feedback.setStatus(FeedBackStatus.APLICADO);
+			//feedback.setStatus(FeedBackStatus.APLICADO);
 			feedbackService.inserir(feedback);
 			
 			Feedback feedback2 = new Feedback(pessoa2,pessoa, date, motivo, "Fazer urgente");
-			feedback2.setStatus(FeedBackStatus.APLICADO);
+			//feedback2.setStatus(FeedBackStatus.APLICADO);
 			feedbackService.inserir(feedback2);
 			
 	}

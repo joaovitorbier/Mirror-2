@@ -87,7 +87,7 @@ public class Pessoa implements Serializable {
 		super();
 		this.email = email;
 		this.senha = senha;
-		addPerfil(Perfil.CLIENTE);
+		
 		Date agora = new Date();
 		this.dataCadastro = agora;
 		setStatus(Status.ATIVO);
