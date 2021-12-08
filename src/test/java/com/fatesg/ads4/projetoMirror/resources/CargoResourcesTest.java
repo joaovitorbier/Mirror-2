@@ -14,7 +14,6 @@ import io.restassured.http.ContentType;
 @WebMvcTest
 class CargoResourcesTest {
 
-	/*
 	
 	@Autowired
 	private CargoResources rest;
@@ -35,5 +34,4 @@ class CargoResourcesTest {
 		
 	}
 
-	*/
 }

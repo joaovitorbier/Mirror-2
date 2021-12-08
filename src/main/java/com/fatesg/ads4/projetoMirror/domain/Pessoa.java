@@ -124,7 +124,7 @@ public class Pessoa implements Serializable {
 		//Set básico do sistema, todo usuário é automaticamente setado como cliente e a hora de cadastro é a hora do sistema
 		Date agora = new Date();
 		this.dataCadastro = agora;
-		addPerfil(Perfil.CLIENTE);
+		//addPerfil(Perfil.CLIENTE);
 		setStatus(Status.ATIVO);
 		
 		//DECIDE O TIPO PELO NÚMERO DE CARACTERES EM cpfCpnj
